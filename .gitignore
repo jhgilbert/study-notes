@@ -3,3 +3,8 @@
 # Ignore the file in each folder that describes 
 # where I left off in a course or book
 00_bookmark.md
+
+# Ignore the file where information sources
+# are listed (to avoid stealing search traffic
+# from the original sources)
+00_sources.md
