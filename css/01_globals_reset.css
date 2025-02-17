@@ -1,0 +1,136 @@
+/* 
+1. Make the box-sizing model more intuitive.
+
+Without this rule, the width of an element will not include padding or border, which makes it difficult to predict the final size of an element.
+
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 
+2. Remove the default margin.
+
+Browsers apply default margins to things like headers,
+but these are often not appropriate for a modern web application. It's easier to start from scratch.
+*/
+* {
+  margin: 0;
+}
+
+/*
+3. Update the line height to a more accessible value.
+
+The WCAG recommends a line height of 1.5 for body text,
+and most browsers use less than that by default.
+
+You will likely want to override this on elements
+with large type, such as headings.
+
+4. Improve font rendering.
+
+On modern high-DPI displays, subpixel antialiasing can
+do more harm than good in terms of text readability,
+but macOS browsers still use it by default (even though
+the Mac operating system itself intentionally
+no longer uses it). The setting below explicitly turns it off.
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 
+5. Make media elements block elements.
+
+By default, many media elements such as images are
+inline, which doesn't make sense for most use cases.
+Inline images, even when displayed at 100% (effectively
+making them block elements), will still have strange
+magical spaces around them that come from rules like line-height. 
+
+Better to avoid it altogether by forcing
+them to be block elements, and preventing them from overflowing by setting a max-width of 100%.
+
+To disable this global max width on an image that should overflow for whatever reason, use `max-width: revert`.
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 
+6. Inherit fonts for form controls.
+
+By default, form controls like input and select elements
+do not inherit font styles from their parents. Not only
+that, but they also use very small text sizes.
+
+The small font size will cause the browser to automatically zoom in when the user focuses on the input, which is annoying, so it's better to increase the font size and avoid this.
+
+`font` is shorthand for lots of font properties, like weight. Using it ensures that the element has the same typography as its parent.
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 
+7. Avoid text overflows.
+
+Allow very long "words" (actual words, or things like URLs) to break when no softer opportunities (like a hyphen) are available.
+
+You could also simply use * here to apply it to all elements, but that approach has not been tested.
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 
+8. Improve paragraph line wrapping.
+
+The default line wrapping behavior in browsers is not always ideal, since it can cause strange orphans sometimes (such as a single emoji pushed to its own line).
+
+Pretty text wrap makes sure that the final line has at least two words, which looks a bit nicer and can avoid awkward outcomes like the one described above.
+
+Performances issues have not been observed from the use of this, but the MDN docs do warn that this property can cause performance issues in some cases.
+
+9. Improve header line wrapping.
+
+The rule for headers takes an even stronger stance, 
+and tries to balance the length of the lines in the header so that they're roughly even.
+*/
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* 
+9. Create a root stacking context.
+
+Optional, and only applicable to projects that use a JS framework like React. Use it to tweak the isolation property of whatever your root element is, such as `<div id="root">`.
+*/
+#root {
+  isolation: isolate;
+}

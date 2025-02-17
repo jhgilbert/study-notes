@@ -1,0 +1,17 @@
+/*
+z-indexes can only be compared within the same stacking context. Browsers create stacking contexts automatically in a variety of situations, such as "this element has an opacity of less than 1".
+
+You can explicitly create a stacking context using isolation: isolate. This approach "seals off" the element into a new stacking context, leading to more predictable stacking behavior, such as a modal dialog that always appears on top of the rest of the page.
+*/
+
+.wrapper {
+  isolation: isolate;
+}
+
+/*
+WARNING: This does not work in IE. You might use `transform: translate(0px)` instead, to create a stacking context without any meaningful side effect.
+*/
+
+/*
+To debug stacking contexts, you can use Chrome extensions like CSS Stacking Context Inspector: https://chromewebstore.google.com/detail/css-stacking-context-insp/apjeljpachdcjkgnamgppgfkmddadcki
+*/

@@ -1,2 +1,5 @@
 .DS_Store
+
+# Ignore the file in each folder that describes 
+# where I left off in a course or book
 00_bookmark.md
