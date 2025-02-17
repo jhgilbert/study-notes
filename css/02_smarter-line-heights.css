@@ -1,0 +1,31 @@
+/*
+Ideally, we could use a formula for line height that yields tighter lines for larger font sizes, avoiding the overly fluffy headers that come from using a fixed line height of 1.5.
+*/
+
+/*
+Option 1:
+
+Use the font size as the base, then add a little extra space.
+
+This is applied with *, instead of being applied to the body, because the em unit doesn't inherit well, and
+will not be recalculated for every element.
+
+This can cause issues when third-party code assumes
+that line heights are inheritable, since they usually are.
+*/
+
+* {
+  line-height: calc(1em + 0.5rem);
+}
+
+/*
+Option 2:
+
+Use the ex unit (the current font's x-height) as the base, then add a little extra space on each side.
+
+The rule is applied to all descendants because using a plain * would mean that line-height on the descendant is determined using the parent's font size, rather than the descendant's font size.
+*/
+
+.parent * {
+  line-height: calc(2px + 2ex + 2px);
+}
